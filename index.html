@@ -1,11 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LandLord</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>LandLord Real Estate</title>
+  <meta name="description" content="Find your dream home with Concord Real Estate. Luxury apartments, residential plots, commercial spaces in Dhaka & beyond."/>
+  
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --primary: #c39c5e;
+      --primary-dark: #a67c3e;
+      --dark: #1a1a1a;
+      --gray: #444;
+      --light: #f8f6f2;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      color: var(--dark);
+      background-color: var(--light);
+      line-height: 1.6;
+    }
+
+    /* ====================== HEADER & HERO ====================== */
+    .hero {
+      height: 100vh;
+      min-height: 680px;
+      background: linear-gradient(rgba(0,0,0,0.58), rgba(0,0,0,0.65)),
+                  url('https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?ixlib=rb-4.0.3&auto=format&fit=crop&w=2400&q=80') center/cover no-repeat;
+      color: white;
+      display: flex;
+      align-items: center;
+      position: relative;
+    }
+
+    .navbar {
+      position: absolute;
+      top: 0;
+      width: 100%;
+      padding: 25px 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+    }
+
+    .logo {
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 2.2rem;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary);
+    }
+
+    .hero-content {
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.8rem, 6vw, 4.5rem);
+      margin-bottom: 1rem;
+      font-weight: 700;
+      text-shadow: 0 4px 12px rgba(0,0,0,0.7);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      margin-bottom: 2.5rem;
+      font-weight: 300;
+      opacity: 0.95;
+    }
+
+    /* Quick Search */
+    .search-box {
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(8px);
+      color: #222;
+      border-radius: 12px;
+      padding: 2.2rem 2.5rem;
+      max-width: 880px;
+      margin: 0 auto;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    }
+
+    .search-box h3 {
+      margin-bottom: 1.4rem;
+      color: var(--dark);
+      font-weight: 600;
+    }
+
+    .search-form {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1.2rem;
+    }
+
+    .form-group select,
+    .form-group input {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 1rem;
+    }
+
+    .btn {
+      background: var(--primary);
+      color: white;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 8px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s;
+      font-size: 1.05rem;
+    }
+
+    .btn:hover {
+      background: var(--primary-dark);
+      transform: translateY(-2px);
+    }
+
+    /* ====================== MAIN CONTENT ====================== */
+    section {
+      padding: 100px 5%;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--dark);
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #666;
+      font-size: 1.15rem;
+      margin-bottom: 3.5rem;
+      max-width: 680px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 2.5rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .property-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .property-card:hover {
+      transform: translateY(-12px);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+    }
+
+    .property-card img {
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+    }
+
+    .property-info {
+      padding: 1.6rem;
+    }
+
+    .price {
+      color: var(--primary);
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .location {
+      color: #555;
+      font-size: 1.05rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .features {
+      display: flex;
+      gap: 1.5rem;
+      color: #666;
+      font-size: 0.95rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 3rem; }
+      .search-box { padding: 1.8rem; }
+      section { padding: 70px 5%; }
+    }
+  </style>
 </head>
 <body>
-    <h1>This one is my Land Project Website</h1>
+
+  <!-- HERO -->
+  <header class="hero">
+    <nav class="navbar">
+      <div class="logo">LandLord</div>
+      <div class="nav-links">
+        <a href="#">Home</a>
+        <a href="#">Properties</a>
+        <a href="#">Projects</a>
+        <a href="#">About</a>
+        <a href="#">Contact</a>
+      </div>
+    </nav>
+
+    <div class="hero-content">
+      <h1>Find Your Dream Property</h1>
+      <p>Premium Residential • Commercial • Plots • Luxury Homes in Dhaka & Beyond</p>
+
+      <!-- Quick Search -->
+      <div class="search-box">
+        <h3>Search Properties</h3>
+        <form class="search-form">
+          <div class="form-group">
+            <select>
+              <option>Property Type</option>
+              <option>Apartment</option>
+              <option>Commercial</option>
+              <option>Plot</option>
+              <option>Duplex</option>
+              <option>Independent House</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <select>
+              <option>Location</option>
+              <option>Dhanmondi</option>
+              <option>Gulshan</option>
+              <option>Banani</option>
+              <option>Baridhara</option>
+              <option>Uttara</option>
+              <option>Bashundhara</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <input type="text" placeholder="Max Budget (BDT)" />
+          </div>
+          <button type="submit" class="btn">Search Now</button>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <!-- Featured Properties -->
+  <section>
+    <h2>Featured Properties</h2>
+    <p class="subtitle">Handpicked luxury & premium properties ready to move in</p>
+
+    <div class="grid-3">
+      <div class="property-card">
+        <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Luxury Apartment">
+        <div class="property-info">
+          <div class="price">BDT 4.85 Crore</div>
+          <div class="location">Gulshan, Dhaka</div>
+          <div class="features">
+            <span>4 Bed</span>
+            <span>4 Bath</span>
+            <span>2850 sqft</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="property-card">
+        <img src="https://images.unsplash.com/photo-1613977257363-707ba9348228?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Modern Duplex">
+        <div class="property-info">
+          <div class="price">BDT 7.20 Crore</div>
+          <div class="location">Banani DOHS</div>
+          <div class="features">
+            <span>5 Bed</span>
+            <span>5 Bath</span>
+            <span>4200 sqft</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="property-card">
+        <img src="https://images.unsplash.com/photo-1600563438938-a9a56b3d36d3?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Residential Plot">
+        <div class="property-info">
+          <div class="price">BDT 2.10 Crore</div>
+          <div class="location">Bashundhara R/A</div>
+          <div class="features">
+            <span>5 Katha</span>
+            <span>Corner Plot</span>
+            <span>Ready</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </body>
 </html>
